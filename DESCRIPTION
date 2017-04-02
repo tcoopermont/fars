@@ -2,12 +2,15 @@ Package: fars
 Title: What the Package Does (one line, title case)
 Version: 0.0.0.9000
 Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Author: Tom Cooper
+Maintainer: Roger D. Peng <rpeng@jhsph.edu>
+Description: Process data from FARS dataset.
 Depends: R (>= 3.3.2)
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
+Imports: dplyr, maps, readr, tidyr
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
