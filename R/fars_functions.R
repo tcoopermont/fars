@@ -65,7 +65,9 @@ make_filename <- function(year) {
 #' fars_read_years(1984:1988)
 #' fars_read_years(c("1984","1986","1988"))
 #'
-#' @importFrom dplyr mutate %>%
+#' @importFrom dplyr mutate
+#' @importFrom magrittr %>%
+
 fars_read_years <- function(years) {
         lapply(years, function(year) {
                 file <- make_filename(year)
