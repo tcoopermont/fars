@@ -23,4 +23,5 @@ If the provided \code{year} is not a integer, the value is truncated. If the pro
 \examples{
 make_filename(1984)
 make_filename("1984")
+
 }

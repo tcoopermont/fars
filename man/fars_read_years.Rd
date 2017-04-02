@@ -20,8 +20,10 @@ and returns a data_tbl with the month and year of each accident.
 The highway accident files for the years given in \code{years} must be in the current working directory or an error is thrown.
 }
 \examples{
+\dontrun{
 fars_read_years(c(1984,1986,1988))
 fars_read_years(1984:1988)
 fars_read_years(c("1984","1986","1988"))
+}
 
 }

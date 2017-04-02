@@ -21,7 +21,9 @@ This is a function that creates a graphical map of highway accidents given a sta
 If a accident file with standard naming convention is not in currect working, a "invalid year" warning is generated. If state.num is not between 0 and 50, a "invalid STATE number" error is thrown. If a particular state had 0 accident records for a given year, a "invalid STATE number" error is thrown.
 }
 \examples{
+\dontrun{
 fars_map_state(1,1990)
 fars_map_state("1","1990")
+}
 
 }

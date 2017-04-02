@@ -4,21 +4,23 @@
 #' the "US National Highway Traffic Safety Administration's Fatality Analysis Reporting System"
 #'
 
-#' @param filename A character string giving the file name/path to load the data from. This can be a local file or url to remote file. More details can be found at \link{readr::read_cvs}.
+#' @param filename A character string giving the file name/path to load the data from. This can be a local file or url to remote file. More details can be found at \code{\link{read_csv}}.
 #' 
 #' @details The file/path/url specified in \code{filename} must be accessable or a error is thrown.
 #'
 #' @return This function returns the contents of filename as a tbl_df
 #'
 #' @examples
+#' \dontrun{
 #' fars_read("fars_data.zip")
 #' fars_read("/home/user1/Download/fars_data.zip")
+#' }
 #'
 #' @importFrom readr read_csv
 #'
 #' @importFrom dplyr tbl_df
+#'
 #' @export
-
 fars_read <- function(filename) {
         if(!file.exists(filename))
                 stop("file '", filename, "' does not exist")
@@ -43,7 +45,8 @@ fars_read <- function(filename) {
 #' @examples
 #' make_filename(1984)
 #' make_filename("1984")
-
+#'
+#' @export
 make_filename <- function(year) {
         year <- as.integer(year)
         sprintf("accident_%d.csv.bz2", year)
@@ -61,20 +64,23 @@ make_filename <- function(year) {
 #' @return a list of data_tbl with columns named MONTH and year and a row for each accident.
 #' 
 #' @examples
+#' \dontrun{
 #' fars_read_years(c(1984,1986,1988))
 #' fars_read_years(1984:1988)
 #' fars_read_years(c("1984","1986","1988"))
+#' }
 #'
 #' @importFrom dplyr mutate
 #' @importFrom magrittr %>%
-
+#'
+#' @export
 fars_read_years <- function(years) {
         lapply(years, function(year) {
                 file <- make_filename(year)
                 tryCatch({
                         dat <- fars_read(file)
                         dplyr::mutate(dat, year = year) %>% 
-                                dplyr::select(MONTH, year)
+                                dplyr::select_(.dots = c('MONTH', 'year'))
                 }, error = function(e) {
                         warning("invalid year: ", year)
                         return(NULL)
@@ -93,11 +99,15 @@ fars_read_years <- function(years) {
 #' @return a data_tbl with a row for each month of a year and a column with the number of accidents
 #'
 #' @examples
+#' \dontrun{
 #' fars_summarize_years(c(1999,2000,2001)) 
 #' fars_summarize_years(c("1999","2000","2001")) 
+#' }
 #'
 #' @importFrom dplyr group_by summarize n %>%
 #' @importFrom tidyr spread
+#'
+#' @export
 fars_summarize_years <- function(years) {
         dat_list <- fars_read_years(years)
         dplyr::bind_rows(dat_list) %>% 
@@ -118,11 +128,15 @@ fars_summarize_years <- function(years) {
 #'
 #'
 #' @examples
+#' \dontrun{
 #' fars_map_state(1,1990)
 #' fars_map_state("1","1990")
+#' }
 #' 
 #' @importFrom dplyr filter 
 #' @importFrom  maps map
+#'
+#' @export
 fars_map_state <- function(state.num, year) {
         filename <- make_filename(year)
         data <- fars_read(filename)
@@ -130,7 +144,7 @@ fars_map_state <- function(state.num, year) {
 
         if(!(state.num %in% unique(data$STATE)))
                 stop("invalid STATE number: ", state.num)
-        data.sub <- dplyr::filter(data, STATE == state.num)
+        data.sub <- dplyr::filter_(data, ~ STATE == state.num)
         if(nrow(data.sub) == 0L) {
                 message("no accidents to plot")
                 return(invisible(NULL))

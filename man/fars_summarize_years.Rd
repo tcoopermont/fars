@@ -20,7 +20,9 @@ by year and month and returns the data in a tidy data format.
 If a accident file with standard naming convention is not in currect working, a "invalid year" warning is generated.
 }
 \examples{
+\dontrun{
 fars_summarize_years(c(1999,2000,2001)) 
 fars_summarize_years(c("1999","2000","2001")) 
+}
 
 }

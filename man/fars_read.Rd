@@ -7,7 +7,7 @@
 fars_read(filename)
 }
 \arguments{
-\item{filename}{A character string giving the file name/path to load the data from. This can be a local file or url to remote file. More details can be found at \link{readr::read_cvs}.}
+\item{filename}{A character string giving the file name/path to load the data from. This can be a local file or url to remote file. More details can be found at \code{\link{read_csv}}.}
 }
 \value{
 This function returns the contents of filename as a tbl_df
@@ -20,7 +20,9 @@ the "US National Highway Traffic Safety Administration's Fatality Analysis Repor
 The file/path/url specified in \code{filename} must be accessable or a error is thrown.
 }
 \examples{
+\dontrun{
 fars_read("fars_data.zip")
 fars_read("/home/user1/Download/fars_data.zip")
+}
 
 }
