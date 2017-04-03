@@ -35,7 +35,7 @@ fars::fars_summarize_years(c(2013,2014,2015))
 ### Map the accidents for a single year for specific state
 
 Use the index from state.name as first parameter.
-```{r}
-data(stateMapEnv)
+
+```
 fars::fars_map_state(1,2013)
 ```
