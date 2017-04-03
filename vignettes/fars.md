@@ -16,8 +16,11 @@ knitr::opts_knit$set(root.dir = system.file("extdata",package="fars"))
 This package contains function for loading, summarizing and mapping data from the US National Highway Traffic Safety Administration's Fatality Analysis Reporting System, which is a nationwide census providing the American public yearly data regarding fatal injuries suffered in motor vehicle traffic crashes. 
 
 https://en.wikipedia.org/wiki/Fatality_Analysis_Reporting_System
+
 ## Usage 
-###Load data for specific years
+
+### Load data for specific years
+
 Returns a list, each element a data frame with data for individual year. 
 Each row in data frame is a single fatal accident.
 
@@ -75,7 +78,8 @@ fars_read_years(c(2013,2014,2015))
 ## # ... with 32,156 more rows
 ```
 
-###Summarize data for specific years
+### Summarize data for specific years
+
 
 ```r
 fars_summarize_years(c(2013,2014,2015))
@@ -99,7 +103,8 @@ fars_summarize_years(c(2013,2014,2015))
 ## 12    12   2457   2604   2781
 ```
 
-###Map the accidents for a single year for specific state
+### Map the accidents for a single year for specific state
+
 Use the index from state.name as first parameter.
 
 ```r

@@ -104,8 +104,9 @@ fars_read_years <- function(years) {
 #' fars_summarize_years(c("1999","2000","2001")) 
 #' }
 #'
-#' @importFrom dplyr group_by summarize n %>%
+#' @importFrom dplyr group_by summarize n 
 #' @importFrom tidyr spread
+#' @importFrom magrittr %>%
 #'
 #' @export
 fars_summarize_years <- function(years) {
@@ -113,7 +114,7 @@ fars_summarize_years <- function(years) {
         dplyr::bind_rows(dat_list) %>% 
                 dplyr::group_by_(~ year, ~ MONTH) %>% 
                 dplyr::summarize_(n = ~ n()) %>%
-                tidyr::spread_(~ year,~ n)
+                tidyr::spread_("year","n")
 }
 #' Generate a graphical map of accident data for a U.S. state
 #'
