@@ -8,10 +8,9 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-
-```r
-knitr::opts_knit$set(root.dir = system.file("extdata",package="fars"))
-```
+#```{r global_options}
+#knitr::opts_knit$set(root.dir = system.file("extdata",package="fars"))
+#```
 
 This package contains function for loading, summarizing and mapping data from the US National Highway Traffic Safety Administration's Fatality Analysis Reporting System, which is a nationwide census providing the American public yearly data regarding fatal injuries suffered in motor vehicle traffic crashes. 
 
@@ -25,7 +24,7 @@ Returns a list, each element a data frame with data for individual year.
 Each row in data frame is a single fatal accident.
 
 ```r
-fars_read_years(c(2013,2014,2015))
+fars::fars_read_years(c(2013,2014,2015))
 ```
 
 ```
@@ -82,7 +81,7 @@ fars_read_years(c(2013,2014,2015))
 
 
 ```r
-fars_summarize_years(c(2013,2014,2015))
+fars::fars_summarize_years(c(2013,2014,2015))
 ```
 
 ```
@@ -108,7 +107,8 @@ fars_summarize_years(c(2013,2014,2015))
 Use the index from state.name as first parameter.
 
 ```r
-fars_map_state(1,2013)
+data(stateMapEnv)
+fars::fars_map_state(1,2013)
 ```
 
 ![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
